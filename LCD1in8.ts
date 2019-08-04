@@ -291,3 +291,5 @@ namespace LCD1IN8{
         DisString(Xnum, Ynum, num + "", Color);
     }
 }
+	
+	
