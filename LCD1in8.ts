@@ -241,7 +241,7 @@ namespace LCD1IN8{
 	    let Char_Offset = 0;
         for(i = 0; i < ch_len; i++) {
 		
-		if (ch.charCodeAt(i)>255)   //Chinese character or ASCII letters
+		if (ch.charCodeAt(i)> 'Z')   //Chinese character or ASCII letters ,  ASCII =255 ?
 		{	Font_Height = 16;
        			Font_Width = 16;
 			// let ch_asicc =  ch.charCodeAt(i) - 32;    
@@ -254,7 +254,7 @@ namespace LCD1IN8{
 	    
 		}
 		
-		else 
+		if (ch.charCodeAt(i)<= 'Z')    //else 
 		{	Font_Height = 12;
        		         Font_Width = 7;	
 		
