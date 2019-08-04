@@ -1,6 +1,8 @@
-# LCD1in8
+# LCD1in8.1
+to display one Chinese character ' 好'
 
-waveshare electronics
+waveshare electronics   
+
 
 ![Waveshare_logo.png](Waveshare_logo.png)
 
