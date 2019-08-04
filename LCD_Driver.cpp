@@ -351,10 +351,30 @@ void LCD_Driver::LCD_DisChar_1207(int Xchar, int Ychar, int Char_Offset, int Col
 {
     int Page = 0, Column = 0;
     const unsigned char *ptr = &Font12_Table[Char_Offset];
+    
+    If (Char_Offset>=94)      // in the font table, alphanumeric letters are put in the rows 0 - 94*12 , 
+	                       //so all Chinese characters are put after the row 94*12.
+    {
+	for(Page = 0; Page < 16; Page ++ ) {
+        for(Column = 0; Column < 16; Column ++ ) {    //chinese character 16 pixels width, 16 pixels height
+            if(*ptr & (0x80 >> (Column % 8)))      //>> right shift the bits of 0x80 (1000 0000) by (colum%8) one bit by one bit
+                LCD_SetPoint(Xchar + Column, Ychar + Page, Color);
 
+            //One byte is 8 bits, fetch next byte by moving the pointer
+            if(Column % 8 == 7)
+                ptr++;
+        }// Write a line with 16 columns wide  (16pixels width)
+        if(7 % 8 != 0)
+            ptr++;
+    }// Write all 16 rows
+	    
+	    
+    }
+	else 
+	
     for(Page = 0; Page < 12; Page ++ ) {
-        for(Column = 0; Column < 7; Column ++ ) {
-            if(*ptr & (0x80 >> (Column % 8)))
+        for(Column = 0; Column < 7; Column ++ ) {    //alphanumeric letters 7 pixels width, 12 pixels height
+            if(*ptr & (0x80 >> (Column % 8)))      //>> right shift the bits of 0x80 (1000 0000) by (colum%8) one bit by one bit
                 LCD_SetPoint(Xchar + Column, Ychar + Page, Color);
 
             //One pixel is 8 bits
