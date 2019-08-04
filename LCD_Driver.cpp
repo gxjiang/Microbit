@@ -352,8 +352,8 @@ void LCD_Driver::LCD_DisChar_1207(int Xchar, int Ychar, int Char_Offset, int Col
     int Page = 0, Column = 0;
     const unsigned char *ptr = &Font12_Table[Char_Offset];
     
-    If (Char_Offset>=94)      // in the font table, alphanumeric letters are put in the rows 0 - 94*12 , 
-	                       //so all Chinese characters are put after the row 94*12.
+    If (Char_Offset>=1140)      // in the font table, alphanumeric letters are put in the rows 0 - 95*12 , 
+	                       //so all Chinese characters are put after the row 95*12.
     {
 	for(Page = 0; Page < 16; Page ++ ) {
         for(Column = 0; Column < 16; Column ++ ) {    //chinese character 16 pixels width, 16 pixels height
