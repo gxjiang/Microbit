@@ -239,9 +239,28 @@ namespace LCD1IN8{
         let ch_len = ch.length;
         let i = 0;
         for(i = 0; i < ch_len; i++) {
+		
+		if (ch.charCodeAt(i)>255)   //Chinese character or ASCII letters
+		{	let Font_Height = 16;
+       			 let Font_Width = 16;
+			// let ch_asicc =  ch.charCodeAt(i) - 32;    
+		 //NULL = 32  , just a trial to diplay '好',  in principle, this should index the chinese character 
+		 //typedef struct typFont_GB16 {signed char index[2]; char mask[32];}   for Chinese characters. 
+		 //with this structure, for example , {'好'; 0xFF, 0xFF ....0xFF }, any Chinese unicode could be indexed. 
+		 //Chinese unicode index range: \U4e00 ~ \U9fa5   , so let ch_asicc (or ch_CN_GB16) =ch.charCodeAt(i) - \U4e00 for positioning
+		 
+            let Char_Offset = 94*12+12;                     //ch_asicc * Font_Height;    just a trial to display the specific Chinese character added '好'
+	    
+		}
+		
+		else 
+		{	let Font_Height = 12;
+       		         let Font_Width = 7;	
+		
             let ch_asicc =  ch.charCodeAt(i) - 32;//NULL = 32
             let Char_Offset = ch_asicc * Font_Height;
 			// let Char_Offset = ch_asicc * Font_Height *(Font_Width/8 +(Font_Width%8?1:0));
+		}
 			
             if((Xpoint + Font_Width) > 160) {
                 Xpoint = Xchar;
