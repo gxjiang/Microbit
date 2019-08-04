@@ -370,7 +370,7 @@ void LCD_Driver::LCD_DisChar_1207(int Xchar, int Ychar, int Char_Offset, int Col
 	    
 	    
     }
-	else 
+ If (Char_Offset<1140) 
 	
     for(Page = 0; Page < 12; Page ++ ) {
         for(Column = 0; Column < 7; Column ++ ) {    //alphanumeric letters 7 pixels width, 12 pixels height
